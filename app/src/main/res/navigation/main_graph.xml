@@ -2,10 +2,10 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_graph"
-    app:startDestination="@id/localPlaylistFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/localPlaylistFragment"
-        android:name="com.nbespalovv.playeravito.presenter.list.local.LocalPlaylistFragment"
-        android:label="LocalPlaylistFragment" />
+        android:id="@+id/homeFragment"
+        android:name="com.nbespalovv.playeravito.presenter.home.HomeFragment"
+        android:label="HomeFragment" />
 </navigation>
