@@ -56,6 +56,10 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
                 ) {
                     error(com.nbespalovv.shared.R.drawable.ic_stub)
                 }
+
+                binding.playerSongName.text = viewModel.player?.mediaMetadata?.title
+
+                binding.playerSongArtist.text = viewModel.player?.mediaMetadata?.artist
             }
         }
 
@@ -76,10 +80,6 @@ class PlayerFragment : Fragment(R.layout.player_fragment) {
         binding.next.setOnClickListener {
             viewModel.player?.seekToNext()
         }
-
-        binding.playerSongName.text = playerParams.title
-
-        binding.playerSongArtist.text = playerParams.title
     }
 
     override fun onAttach(context: Context) {
