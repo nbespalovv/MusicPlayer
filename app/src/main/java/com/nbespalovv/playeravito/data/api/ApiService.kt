@@ -9,4 +9,6 @@ interface ApiService {
     @GET("chart/0/tracks")
     suspend fun loadChart(@Query("limit") limit: Int = 35): Response<TrackDto>
 
+    @GET("search/")
+    suspend fun search(@Query("q") query: String) : Response<TrackDto>
 }

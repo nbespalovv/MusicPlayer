@@ -24,6 +24,13 @@ class LocalTracksRepositoryImpl @Inject constructor(
         return DataState.Success(Unit)
     }
 
+    override suspend fun search(query: String): DataState<Unit> {
+        source.searchLocalPlaylist(context, query).also {
+            _playlist.emit(it.map {it.toSong() })
+        }
+        return DataState.Success(Unit)
+    }
+
     companion object {
         const val NAME_KEY = "LocalTracksRepositoryImpl"
     }

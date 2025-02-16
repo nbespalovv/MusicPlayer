@@ -1,11 +1,11 @@
 package com.nbespalovv.playeravito.data.repository
 
 import com.nbespalovv.playeravito.data.api.ApiService
-import com.nbespalovv.utils.DataState
 import com.nbespalovv.playeravito.model.common.Song
+import com.nbespalovv.playeravito.model.mappers.toSong
+import com.nbespalovv.utils.DataState
 import com.nbespalovv.utils.asUnit
 import com.nbespalovv.utils.handleState
-import com.nbespalovv.playeravito.model.mappers.toSong
 import com.nbespalovv.utils.toDataState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,6 +28,20 @@ class DeezerTracksRepositoryImpl @Inject constructor(
             .handleState(
                 onSuccess = {
                     it.data.map { it.toSong() }.also { result ->
+                        _playlist.emit(result)
+                    }
+                }
+            )
+            .asUnit()
+    }
+
+    override suspend fun search(query: String): DataState<Unit> = withContext(Dispatchers.IO) {
+        service
+            .search(query)
+            .toDataState()
+            .handleState(
+                onSuccess = {
+                    it.data.map { it.toSong() }.also {result ->
                         _playlist.emit(result)
                     }
                 }

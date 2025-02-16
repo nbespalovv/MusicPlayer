@@ -11,5 +11,4 @@ internal class LoadChartsUseCaseImpl @Inject constructor(
 ): LoadChartsUseCase {
     override suspend fun invoke(): DataState<Unit> =
         repository.loadChart()
-
 }
