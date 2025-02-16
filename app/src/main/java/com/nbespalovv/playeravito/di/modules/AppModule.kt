@@ -6,6 +6,8 @@ import dagger.Module
     includes = [
         AppBindsModule::class,
         ViewModelModule::class,
+        InterceptorsModule::class,
+        NetworkModule::class,
     ]
 )
 interface AppModule

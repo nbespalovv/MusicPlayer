@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.nbespalovv.playeravito.di.ViewModelFactory
 import com.nbespalovv.playeravito.di.ViewModelKey
+import com.nbespalovv.playeravito.presenter.list.deezer.DeezerViewModel
 import com.nbespalovv.playeravito.presenter.list.local.LocalPlaylistViewModel
 import dagger.Binds
 import dagger.Module
@@ -13,6 +14,11 @@ import dagger.multibindings.IntoMap
 interface ViewModelModule {
     @Binds
     fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DeezerViewModel::class)
+    fun bindDeezerViewModel(model: DeezerViewModel): ViewModel
 
     @Binds
     @IntoMap

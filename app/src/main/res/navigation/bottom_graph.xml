@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/localPlaylistFragment">
+
+    <fragment
+        android:id="@+id/localPlaylistFragment"
+        android:name="com.nbespalovv.playeravito.presenter.list.local.LocalPlaylistFragment"
+        android:label="LocalPlaylistFragment" />
+    <fragment
+        android:id="@+id/deezerPlaylistFragment"
+        android:name="com.nbespalovv.playeravito.presenter.list.deezer.DeezerPlaylistFragment"
+        android:label="DeezerPlaylistFragment" />
+</navigation>
