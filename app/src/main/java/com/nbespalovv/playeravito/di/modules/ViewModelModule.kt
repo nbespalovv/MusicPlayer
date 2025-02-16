@@ -6,6 +6,7 @@ import com.nbespalovv.playeravito.di.ViewModelFactory
 import com.nbespalovv.playeravito.di.ViewModelKey
 import com.nbespalovv.playeravito.presenter.list.deezer.DeezerViewModel
 import com.nbespalovv.playeravito.presenter.list.local.LocalPlaylistViewModel
+import com.nbespalovv.playeravito.presenter.player.PlayerViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -18,10 +19,15 @@ interface ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(DeezerViewModel::class)
-    fun bindDeezerViewModel(model: DeezerViewModel): ViewModel
+    fun bindDeezerViewModel(viewModel: DeezerViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(LocalPlaylistViewModel::class)
-    fun bindLocalPlaylistViewModel(model: LocalPlaylistViewModel): ViewModel
+    fun bindLocalPlaylistViewModel(viewModel: LocalPlaylistViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PlayerViewModel::class)
+    fun bindPlayerViewModel(viewModel: PlayerViewModel): ViewModel
 }

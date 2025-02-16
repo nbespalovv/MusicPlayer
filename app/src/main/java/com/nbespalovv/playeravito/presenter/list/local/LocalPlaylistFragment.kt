@@ -2,22 +2,40 @@ package com.nbespalovv.playeravito.presenter.list.local
 
 import android.content.Context
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.nbespalovv.playeravito.R
+import com.nbespalovv.playeravito.di.ViewModelFactory
 import com.nbespalovv.playeravito.di.appComponent
 import com.nbespalovv.playeravito.model.mappers.toSongShared
-import com.nbespalovv.playeravito.di.ViewModelFactory
+import com.nbespalovv.playeravito.presenter.home.HomeFragmentDirections
+import com.nbespalovv.playeravito.presenter.player.PlayerParams
 import com.nbespalovv.shared.PlaylistCollector
 import com.nbespalovv.shared.PlaylistFragment
 import com.nbespalovv.shared.SongShared
 import javax.inject.Inject
 
-class LocalPlaylistFragment: PlaylistFragment() {
+class LocalPlaylistFragment : PlaylistFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: LocalPlaylistViewModel by viewModels { viewModelFactory }
     override fun onSongClick(index: Int, song: SongShared) {
-        TODO("Not yet implemented")
+        HomeFragmentDirections.actionHomeFragmentToPlayerFragment(
+            PlayerParams(
+                id = song.id,
+                title = song.title,
+                preview = song.preview,
+                artist = song.artist,
+                album = song.album,
+            )
+        ).also {
+            requireActivity()
+                .findNavController(R.id.rootFragmentContainerView)
+                .navigate(it)
+        }
     }
 
     override fun registerPlaylistCollector(collector: PlaylistCollector) {
