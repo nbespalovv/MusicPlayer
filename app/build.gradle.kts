@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.nbespalovv.playeravito"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.nbespalovv.playeravito"
@@ -74,4 +74,6 @@ dependencies {
 
     implementation(projects.common.utils)
     implementation(projects.common.shared)
+
+    implementation(libs.bundles.media3)
 }
