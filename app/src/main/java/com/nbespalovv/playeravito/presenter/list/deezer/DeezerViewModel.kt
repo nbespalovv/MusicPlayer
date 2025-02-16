@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nbespalovv.playeravito.domain.loadChartsUseCase.LoadChartsUseCase
 import com.nbespalovv.playeravito.domain.playlistFlowUseCase.PlaylistFlowUseCase
+import com.nbespalovv.playeravito.domain.searchRemotePlaylistUseCase.SearchRemotePlaylistUseCase
 import com.nbespalovv.playeravito.model.common.Song
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ import javax.inject.Inject
 class DeezerViewModel @Inject constructor(
     private val loadChartsUseCase: LoadChartsUseCase,
     private val playlistFlowUseCase: PlaylistFlowUseCase,
+    private val searchRemotePlaylistUseCase: SearchRemotePlaylistUseCase,
 ) : ViewModel() {
     private val _playlist = MutableLiveData<List<Song>>()
     val playlist: LiveData<List<Song>>
@@ -31,6 +33,14 @@ class DeezerViewModel @Inject constructor(
     fun loadChart() {
         viewModelScope.launch {
             loadChartsUseCase()
+        }
+    }
+
+    fun search(query: String) {
+        viewModelScope.launch {
+            if (query.isNotEmpty())
+                searchRemotePlaylistUseCase(query)
+            else loadChart()
         }
     }
 }

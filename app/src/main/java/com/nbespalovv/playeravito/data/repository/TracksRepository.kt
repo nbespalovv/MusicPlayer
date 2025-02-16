@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.StateFlow
 interface TracksRepository {
     val playlist: StateFlow<List<Song>>
     suspend fun loadChart(): DataState<Unit>
+    suspend fun search(query: String): DataState<Unit>
 }

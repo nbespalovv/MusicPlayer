@@ -24,6 +24,10 @@ class DeezerPlaylistFragment: PlaylistFragment() {
         }
     }
 
+    override fun onSearch(query: String) {
+        viewModel.search(query)
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         context.appComponent.inject(this)

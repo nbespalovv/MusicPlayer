@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nbespalovv.playeravito.domain.localPlaylistFlowUseCase.LocalPlaylistFlowUseCase
 import com.nbespalovv.playeravito.domain.localTracksUseCase.LocalTracksUseCase
+import com.nbespalovv.playeravito.domain.searchLocalSongUseCase.SearchLocalSongUseCase
 import com.nbespalovv.playeravito.model.common.Song
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 class LocalPlaylistViewModel @Inject constructor(
     private val localTracksUseCase: LocalTracksUseCase,
-    private val localPlaylistFlowUseCase: LocalPlaylistFlowUseCase
+    private val localPlaylistFlowUseCase: LocalPlaylistFlowUseCase,
+    private val searchLocalSongUseCase: SearchLocalSongUseCase,
 ) : ViewModel() {
     private val _playlist = MutableLiveData<List<Song>>()
     val playlist: LiveData<List<Song>>
@@ -27,7 +29,13 @@ class LocalPlaylistViewModel @Inject constructor(
         }
         loadChart()
     }
-
+    fun search(query: String) {
+        viewModelScope.launch {
+            if (query.isNotEmpty())
+                searchLocalSongUseCase(query)
+            else loadChart()
+        }
+    }
     fun loadChart() {
         viewModelScope.launch {
             localTracksUseCase()

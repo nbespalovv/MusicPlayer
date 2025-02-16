@@ -14,6 +14,10 @@ import com.nbespalovv.playeravito.domain.localTracksUseCase.LocalTracksUseCase
 import com.nbespalovv.playeravito.domain.localTracksUseCase.LocalTracksUseCaseImpl
 import com.nbespalovv.playeravito.domain.playlistFlowUseCase.PlaylistFlowUseCase
 import com.nbespalovv.playeravito.domain.playlistFlowUseCase.PlaylistFlowUseCaseImpl
+import com.nbespalovv.playeravito.domain.searchLocalSongUseCase.SearchLocalSongUseCase
+import com.nbespalovv.playeravito.domain.searchLocalSongUseCase.SearchLocalSongUseCaseImpl
+import com.nbespalovv.playeravito.domain.searchRemotePlaylistUseCase.SearchRemotePlaylistUseCase
+import com.nbespalovv.playeravito.domain.searchRemotePlaylistUseCase.SearchRemotePlaylistUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -47,6 +51,12 @@ internal interface AppBindsModule {
 
     @Binds
     fun bindLocalPlaylistFlowUseCase(impl: LocalPlaylistFlowUseCaseImpl): LocalPlaylistFlowUseCase
+
+    @Binds
+    fun bindSearchLocalSongUseCase(impl: SearchLocalSongUseCaseImpl): SearchLocalSongUseCase
+
+    @Binds
+    fun bindSearchRemoteSongUseCase(impl: SearchRemotePlaylistUseCaseImpl): SearchRemotePlaylistUseCase
 
     companion object {
         @Provides

@@ -26,6 +26,10 @@ class LocalPlaylistFragment: PlaylistFragment() {
         }
     }
 
+    override fun onSearch(query: String) {
+        viewModel.search(query)
+    }
+
     override fun onAttach(context: Context) {
         context.appComponent.inject(this)
         super.onAttach(context)
